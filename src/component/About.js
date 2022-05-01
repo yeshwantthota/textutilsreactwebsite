@@ -1,31 +1,21 @@
 import React, { useState } from "react";
 
-export default function About() {
-  const [myStyle, setmyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
-  const [btnText, setbtnText] = useState("Enable dark mode");
+export default function About(props) {
+  // const [myStyle, setmyStyle] = useState({
+  //   color: "black",
+  //   backgroundColor: "white",
+  // });
 
-  const toggleHandle = () => {
-    if (myStyle.color === "black") {
-      setmyStyle({
-        color: "white",
-        backgroundColor: "black",
-      });
-      setbtnText("Enable light mode");
-    } else {
-      setmyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-      setbtnText("Enable dark mode");
-    }
+  let myStyle = {
+    color: props.mode === "dark" ? "white" : "#042743",
+    backgroundColor: props.mode === "dark" ? "rgb(36 74 104)" : "white",
   };
   return (
     <>
-      <div className="container my-3" style={myStyle}>
-        <h1>About us</h1>
+      <div className="container my-3">
+        <h1 style={{ color: props.mode === "dark" ? "white" : "#042743" }}>
+          About us
+        </h1>
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingOne">
@@ -38,7 +28,7 @@ export default function About() {
                 aria-controls="collapseOne"
                 style={myStyle}
               >
-                Accordion Item #1
+                <strong>Analyze your text</strong>
               </button>
             </h2>
             <div
@@ -71,7 +61,7 @@ export default function About() {
                 aria-controls="collapseTwo"
                 style={myStyle}
               >
-                Accordion Item #2
+                <strong> Free to use</strong>
               </button>
             </h2>
             <div
@@ -104,7 +94,7 @@ export default function About() {
                 aria-controls="collapseThree"
                 style={myStyle}
               >
-                Accordion Item #3
+                <strong> Browser compatible</strong>
               </button>
             </h2>
             <div
@@ -126,9 +116,6 @@ export default function About() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="btn btn-primary my-3" onClick={toggleHandle}>
-          {btnText}
         </div>
       </div>
     </>
